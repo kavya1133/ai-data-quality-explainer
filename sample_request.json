@@ -1,0 +1,11 @@
+{
+  "run_id": "run_20260513_01",
+  "source_file": "delivery_kpi_13may.csv",
+  "rows": [
+    {"kpi_value": 120, "region": "ME", "status": "delivered"},
+    {"kpi_value": -5, "region": "EU", "status": "failed"},
+    {"kpi_value": "NaN", "region": "UNKNOWN", "status": "done"},
+    {"kpi_value": 90, "region": "APAC", "status": "delivered"}
+  ],
+  "previous_day_summary": "Stable pipeline with minor delays"
+}
