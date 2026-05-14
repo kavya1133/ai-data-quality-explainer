@@ -1,14 +1,21 @@
 def generate_incident_summary(analysis, issues, run_id):
-    return f"""
-Run {run_id} Data Quality Incident:
 
-- Total records: {analysis['total_rows']}
-- Missing KPI values: {analysis['missing_kpi']}
-- Status distribution: {analysis['status_counts']}
-
-Detected Issues:
-{chr(10).join("- " + i for i in issues[:4]) if issues else "- No major issues detected"}
-
-Impact: Potential KPI under-reporting and region-level inconsistency.
-Recommendation: Validate upstream ingestion and enforce schema checks.
-"""
+    return {
+        "title": "Data Quality Incident Report",
+        "run_id": run_id,
+        "summary": {
+            "total_records": analysis["total_rows"],
+            "missing_kpi_values": analysis["missing_kpi"],
+            "status_distribution": analysis["status_counts"]
+        },
+        "detected_issues": issues[:10],
+        "impact": (
+            "Potential KPI distortion due to invalid "
+            "status and region inconsistencies."
+        ),
+        "recommendation": [
+            "Enforce schema validation at ingestion layer",
+            "Standardize allowed status values",
+            "Add automated pipeline quality checks"
+        ]
+    }

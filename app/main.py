@@ -5,7 +5,19 @@ from app.analyzer import analyze
 from app.llm import generate_incident_summary
 from app.utils import generate_run_trace_id, get_timestamp
 
+
+import logging
+from fastapi import FastAPI
+
 app = FastAPI()
+
+logging.basicConfig(level=logging.INFO)
+
+@app.on_event("startup")
+async def startup_event():
+    logging.info("Swagger Docs: http://127.0.0.1:8000/docs")
+
+
 
 @app.post("/analyze-run")
 def analyze_run(payload: RunRequest):
